@@ -18,11 +18,12 @@ class OwnerTableViewController: UITableViewController {
         super.viewDidLoad()
         setupNavBar()
         print(NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true))
-        owners = Owner.all()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        owners = Owner.all()
         self.tableView.reloadData()
     }
 

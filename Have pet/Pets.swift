@@ -43,7 +43,7 @@ extension Owner {
     }
     
     static func all(in realm: Realm = try! Realm()) -> Results<Owner> {
-        return realm.objects(Owner.self)
+        return realm.objects(Owner.self).sorted(byKeyPath: "name")
     }
     
     func addPet (name: String, term: String, in realm: Realm = try! Realm()) {
