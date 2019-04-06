@@ -24,7 +24,7 @@ import RealmSwift
 
 @objcMembers class Pet: Object {
     dynamic var animalName = ""
-    dynamic var term = ""
+    dynamic var category = ""
     
     let owner = LinkingObjects(fromType: Owner.self, property: "pets")
 
@@ -46,9 +46,9 @@ extension Owner {
         return realm.objects(Owner.self).sorted(byKeyPath: "name")
     }
     
-    func addPet (name: String, term: String, in realm: Realm = try! Realm()) {
+    func addPet (name: String, category: String, in realm: Realm = try! Realm()) {
         try! realm.write {
-            self.pets.append(Pet(value: ["animalName" : name, "term" : term]))
+            self.pets.append(Pet(value: ["animalName" : name, "category" : category]))
         }
     }
     

@@ -6,23 +6,21 @@ import UIKit
 import RealmSwift
 
 class PetsTableViewController: UITableViewController {
-
-    var indexPath: IndexPath!
+    
     var owners: Results<Owner>?
     var owner: Owner?
     var pets: List<Pet>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        owners = Owner.all()
-        owner = owners?[indexPath.row]
+        
         pets = owner?.pets
         setupNavBar()
     }
     
-    convenience init(indexPath: IndexPath) {
+    convenience init(_ owner: Owner) {
         self.init()
-        self.indexPath = indexPath
+        self.owner = owner
     }
     
     func setupNavBar () {
@@ -40,15 +38,15 @@ class PetsTableViewController: UITableViewController {
             textField.keyboardType = .alphabet
         })
         alert.addTextField { (textField) in
-            textField.placeholder = "term"
+            textField.placeholder = "category"
             textField.keyboardType = .alphabet
         }
         
         alert.addAction(UIAlertAction(title: "add", style: .default, handler: { (action) in
-            guard let name = alert.textFields?[0].text, let term = alert.textFields?[1].text else {
+            guard let name = alert.textFields?[0].text, let category = alert.textFields?[1].text else {
                 return
             }
-            self.owner?.addPet(name: name, term: term)
+            self.owner?.addPet(name: name, category: category)
             self.tableView.reloadData()
             
         }))
@@ -64,7 +62,7 @@ class PetsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
         cell.textLabel?.text = pets?[indexPath.row].animalName
-        cell.detailTextLabel?.text = pets?[indexPath.row].term
+        cell.detailTextLabel?.text = pets?[indexPath.row].category
         return cell
     }
     

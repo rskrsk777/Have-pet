@@ -107,7 +107,14 @@ class OwnerTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let petsTVC = PetsTableViewController(indexPath: indexPath)
+        let sendOwner: Owner?
+        if searchBar.isActive {
+            sendOwner = searchOwners?[indexPath.row]
+        } else {
+            sendOwner = owners?[indexPath.row]
+        }
+        guard let send = sendOwner else { return }
+        let petsTVC = PetsTableViewController(send)
         self.navigationController?.pushViewController(petsTVC, animated: true)
     }
     
