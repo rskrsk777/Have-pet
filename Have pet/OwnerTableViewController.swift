@@ -10,6 +10,9 @@ class OwnerTableViewController: UITableViewController {
 
     var testPetsName: [String] = []
     var owners: Results<Owner>?
+    var searchOwners: Results<Owner>?
+    var searchBar: UISearchController!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +34,22 @@ class OwnerTableViewController: UITableViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor.green
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.tappedAddButton))
         self.navigationItem.setRightBarButton(addButton, animated: true)
-    
+
+        
+        self.searchBar = {
+            let search = UISearchController(searchResultsController: nil)
+            // search.searchResultsUpdater = self
+            search.obscuresBackgroundDuringPresentation = false
+            search.hidesNavigationBarDuringPresentation = false
+            self.navigationItem.searchController = search
+            self.navigationItem.searchController?.searchBar.isHidden = false
+            search.searchResultsUpdater = self
+            search.searchBar.delegate = self
+            // self.navigationItem.searchController?.definesPresentationContext = true
+            return search
+        }()
+
+        
     }
     
 
@@ -61,12 +79,24 @@ class OwnerTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return owners?.count ?? 0
+        
+        if self.searchBar.isActive {
+            return searchOwners?.count ?? 0
+        } else {
+            return owners?.count ?? 0
+        }
+
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "Cell")
+        if self.searchBar.isActive {
+            guard let searchOwner = searchOwners?[indexPath.row] else { return cell }
+            cell.textLabel?.text = searchOwner.name
+            cell.detailTextLabel?.text = "\(searchOwner.pets.count)"
+            return cell
+        }
         guard let owner = owners?[indexPath.row] else {
             return cell
         }
@@ -99,3 +129,28 @@ class OwnerTableViewController: UITableViewController {
     }
 }
 
+
+extension OwnerTableViewController:  UISearchResultsUpdating, UISearchBarDelegate{
+
+    func updateSearchResults(for searchController: UISearchController) {
+        guard searchController.searchBar.text != nil else {
+            searchOwners = nil
+            return
+        }
+        let searchText = searchController.searchBar.text?.lowercased()
+        let predicate = NSPredicate(format: "name CONTAINS %@", searchText!)
+        let realm = try! Realm()
+        searchOwners = realm.objects(Owner.self).filter(predicate)
+        tableView.reloadData()
+    }
+    
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+
+        tableView.reloadData()
+        return true
+    }
+    
+
+    
+}
