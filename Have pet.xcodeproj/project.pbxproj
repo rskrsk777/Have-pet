@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BB6C9C322587B3400FB061E /* Pets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6C9C222587B3400FB061E /* Pets.swift */; };
+		2BB6C9C52258809600FB061E /* PetsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB6C9C42258809600FB061E /* PetsTableViewController.swift */; };
 		2BF1D66F225874C300D47932 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF1D66E225874C300D47932 /* AppDelegate.swift */; };
-		2BF1D671225874C300D47932 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF1D670225874C300D47932 /* ViewController.swift */; };
+		2BF1D671225874C300D47932 /* OwnerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF1D670225874C300D47932 /* OwnerTableViewController.swift */; };
 		2BF1D674225874C300D47932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BF1D672225874C300D47932 /* Main.storyboard */; };
 		2BF1D676225874C400D47932 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BF1D675225874C400D47932 /* Assets.xcassets */; };
 		2BF1D679225874C400D47932 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BF1D677225874C400D47932 /* LaunchScreen.storyboard */; };
@@ -16,9 +18,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2BB6C9C222587B3400FB061E /* Pets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pets.swift; sourceTree = "<group>"; };
+		2BB6C9C42258809600FB061E /* PetsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetsTableViewController.swift; sourceTree = "<group>"; };
 		2BF1D66B225874C300D47932 /* Have pet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Have pet.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BF1D66E225874C300D47932 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2BF1D670225874C300D47932 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2BF1D670225874C300D47932 /* OwnerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnerTableViewController.swift; sourceTree = "<group>"; };
 		2BF1D673225874C300D47932 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2BF1D675225874C400D47932 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BF1D678225874C400D47932 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -70,7 +74,9 @@
 			isa = PBXGroup;
 			children = (
 				2BF1D66E225874C300D47932 /* AppDelegate.swift */,
-				2BF1D670225874C300D47932 /* ViewController.swift */,
+				2BF1D670225874C300D47932 /* OwnerTableViewController.swift */,
+				2BB6C9C42258809600FB061E /* PetsTableViewController.swift */,
+				2BB6C9C222587B3400FB061E /* Pets.swift */,
 				2BF1D672225874C300D47932 /* Main.storyboard */,
 				2BF1D675225874C400D47932 /* Assets.xcassets */,
 				2BF1D677225874C400D47932 /* LaunchScreen.storyboard */,
@@ -210,8 +216,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BF1D671225874C300D47932 /* ViewController.swift in Sources */,
+				2BF1D671225874C300D47932 /* OwnerTableViewController.swift in Sources */,
 				2BF1D66F225874C300D47932 /* AppDelegate.swift in Sources */,
+				2BB6C9C322587B3400FB061E /* Pets.swift in Sources */,
+				2BB6C9C52258809600FB061E /* PetsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
